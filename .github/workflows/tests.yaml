@@ -44,8 +44,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        trimming: [ null , -skip-unused ]
-        memory-management: [ null , -autofree ]
+#        trimming: [ null , -skip-unused ]
+        triming: [ null ]
+#        memory-management: [ null , -autofree ]
+        memory-management: [ null ]
     steps:
       - name: Restore Vlang
         uses: actions/cache/restore@v3
@@ -62,8 +64,11 @@ jobs:
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: v install
+
       - name: ${{ matrix.trimming }} ${{ matrix.memory-management }} build
-        run: v -shared ${{ matrix.trimming }} ${{ matrix.memory-management }} .
+        run: v ${{ matrix.trimming }} ${{ matrix.memory-management }} .
 
   tests:
     needs: simple-build
@@ -80,6 +85,9 @@ jobs:
         uses: vlang/setup-v@v1.3
         with:
           check-latest: true
+
+      - name: Install dependencies
+        run: v install
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v3

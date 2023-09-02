@@ -9,7 +9,7 @@ import dracks.validator { transform_and_validate }
 pub struct Config {
 pub:
 	database string = './db.sqlite'
-	port     int    = 8081
+	port     int    = 8010
 }
 
 pub fn load_config() !Config {
