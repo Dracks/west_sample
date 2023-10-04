@@ -2,6 +2,7 @@ module main
 
 import vweb
 import dracks.west
+import dracks.westhealth
 import home_page
 import config { Config }
 
@@ -10,6 +11,7 @@ fn new_app_module() &west.WebModule {
 
 	app.import_web_module(mut config.new_module())
 	app.import_web_module(mut home_page.new_module())
+	app.import_web_module(mut westhealth.new_module())
 
 	return app
 }
