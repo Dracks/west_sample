@@ -3,12 +3,13 @@ name: Build and deploy Alpine Sample image
 on:
   push:
     branches:
-    - main
-    - enable-arm64-images
+      - main
+      - enable-arm64-images
     paths:
       - '.github/workflows/docker.yml'
       - 'docker/Dockerfile'
       - 'src/**'
+  workflow_dispatch:
 
 env:
   PLATFORMS: linux/amd64,linux/arm64
