@@ -1,6 +1,7 @@
 module home_page
 
 import vweb
+import dracks.vest
 
 // This struct will be our controller
 struct HomePage {
@@ -8,6 +9,10 @@ struct HomePage {
 	vweb.Controller
 mut:
 	service &HomeService [inject; vweb_global]
+}
+
+fn (self HomePage) to_interface() vest.Object {
+	return self
 }
 
 ['/']
